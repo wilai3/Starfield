@@ -1,23 +1,56 @@
-void setup()
-{
-  //your code here
-}
-void draw()
-{
-  //your code here
-}
-class Particle
-{
-  double myX, myY, mySpeed, myAngle;
-  int myColor, myWidth, myLength;
-  boolean smile;
-  Particle(){
-    myX = 250;
-    myY = 250;
-    
+Face [] mood;
+
+void setup() {
+  size(500, 500);
+  background(0);
+  mood = new Face[25];
+  for (int i = 0; i < mood.length; i++) {
+    mood[i] = new Face();
+  }
 }
 
-class OddballParticle //inherits from Particle
+void draw()
 {
-  //your code here
+  for (int i = 0; i < mood.length; i++) {
+    mood[i].move();
+    mood[i].show();
+  }
+}
+
+class Face
+{
+  float myX, myY;
+  double mySpeed, myAngle;
+  boolean happy;
+  Face() {
+    myX = 250;
+    myY = 250;
+    myAngle = Math.random()*2*Math.PI;
+    mySpeed = Math.random()*10;
+    happy = true;
+  }
+  void move() {
+    myX = myX + (float)Math.cos(myAngle) * (float)mySpeed;
+    myY = myY + (float)Math.sin(myAngle) * (float)mySpeed;
+  }
+  void show() {
+    //happy face
+    if (happy == true) {
+      fill(255, 222, 52);
+      ellipse(myX, myY, 75, 75);
+      bezier(myX-20, myY+20, myX-20, myY+30, myX+20, myY+30, myX+20, myY+20);
+      fill(0);
+      ellipse(myX-13, myY-10, 10, 10);
+      ellipse(myX+13, myY-10, 10, 10);
+    }
+    //mad face
+    if (happy == false) {
+      fill(#F53711);
+      ellipse(myX, myY, 75, 75);
+      bezier(myX-20, myY+20, myX-20, myY+10, myX+20, myY+10, myX+20, myY+20);
+      fill(0);
+      ellipse(myX-13, myY-10, 10, 10);
+      ellipse(myX+13, myY-10, 10, 10);
+    }
+  }
 }
