@@ -63,7 +63,7 @@ class madFace extends Face {
     myX = 250;
     myY = 250;
     myAngle = Math.random()*2*Math.PI;
-    mySpeed = Math.random()*10;
+    mySpeed = Math.random()*5;
     happy = false;
   }
 }
