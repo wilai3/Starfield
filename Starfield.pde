@@ -2,15 +2,18 @@ Face [] mood;
 
 void setup() {
   size(500, 500);
-  background(0);
-  mood = new Face[25];
-  for (int i = 0; i < mood.length; i++) {
+  mood = new Face[100];
+  for (int i = 0; i < 10; i++){
+    mood[i] = new madFace();
+  }
+  for (int i = 10; i < mood.length; i++) {
     mood[i] = new Face();
   }
 }
 
 void draw()
 {
+  background(255);
   for (int i = 0; i < mood.length; i++) {
     mood[i].move();
     mood[i].show();
@@ -52,5 +55,15 @@ class Face
       ellipse(myX-13, myY-10, 10, 10);
       ellipse(myX+13, myY-10, 10, 10);
     }
+  }
+}
+
+class madFace extends Face {
+  madFace() {
+    myX = 250;
+    myY = 250;
+    myAngle = Math.random()*2*Math.PI;
+    mySpeed = Math.random()*10;
+    happy = false;
   }
 }
